@@ -7,3 +7,12 @@ vite.config.ts.*
 
 # Asset files
 attached_assets/
+
+# Config and cache
+.config/
+.local/
+.vercel/
+.ccls-cache/
+
+# Large 3D assets (use CDN or external hosting)
+client/public/3dassets/
