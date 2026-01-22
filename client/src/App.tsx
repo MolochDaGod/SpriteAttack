@@ -4,17 +4,30 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
-import { WalletExample } from "@/components/WalletExample";
+import Login from "@/pages/Login";
 import BattleBoard from "@/pages/BattleBoard";
 import BattleArena from "@/pages/BattleArena";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 function Router() {
   return (
     <Switch>
-      {/* Add pages below */}
-      <Route path="/" component={WalletExample} />
-      <Route path="/battle-board" component={BattleBoard} />
-      <Route path="/battle-arena" component={BattleArena} />
+      {/* Public routes */}
+      <Route path="/" component={Login} />
+      <Route path="/login" component={Login} />
+      
+      {/* Protected routes */}
+      <Route path="/battle-board">
+        <ProtectedRoute>
+          <BattleBoard />
+        </ProtectedRoute>
+      </Route>
+      <Route path="/battle-arena">
+        <ProtectedRoute>
+          <BattleArena />
+        </ProtectedRoute>
+      </Route>
+      
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>

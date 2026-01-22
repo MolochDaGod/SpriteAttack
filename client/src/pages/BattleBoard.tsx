@@ -5,7 +5,8 @@ import { generateChallengeBoard, refreshExpiredChallenges } from '@/lib/challeng
 import { ChallengeCard } from '@/components/board/ChallengeCard';
 import { GuxDisplay } from '@/components/board/GuxDisplay';
 import { Button } from '@/components/ui/button';
-import { RefreshCw, Sword, Home } from 'lucide-react';
+import { RefreshCw, Sword, LogOut } from 'lucide-react';
+import { auth } from '@/lib/auth';
 
 const STORAGE_KEY = 'battle-board-data';
 
@@ -106,20 +107,20 @@ export default function BattleBoard() {
           </div>
           <div className="flex gap-2">
             <Button 
-              onClick={() => setLocation('/')}
-              variant="outline"
-              className="gap-2"
-            >
-              <Home className="w-4 h-4" />
-              Home
-            </Button>
-            <Button 
               onClick={handleManualRefresh}
               variant="outline"
               className="gap-2"
             >
               <RefreshCw className="w-4 h-4" />
               Refresh Board
+            </Button>
+            <Button 
+              onClick={() => auth.logout()}
+              variant="outline"
+              className="gap-2"
+            >
+              <LogOut className="w-4 h-4" />
+              Logout
             </Button>
           </div>
         </div>
