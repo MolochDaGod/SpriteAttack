@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
 import { walletApi, ApiError } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Loader2 } from "lucide-react";
+import { Loader2, Swords } from "lucide-react";
 
 interface WalletData {
   grudgeId: string;
@@ -13,6 +14,7 @@ interface WalletData {
 }
 
 export function WalletExample() {
+  const [, setLocation] = useLocation();
   const [wallet, setWallet] = useState<WalletData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -42,6 +44,16 @@ export function WalletExample() {
 
   return (
     <div className="container mx-auto p-4 max-w-2xl">
+      <div className="mb-4">
+        <Button 
+          onClick={() => setLocation('/battle-board')}
+          size="lg"
+          className="gap-2"
+        >
+          <Swords className="w-5 h-5" />
+          Enter Battle Board
+        </Button>
+      </div>
       <Card>
         <CardHeader>
           <CardTitle>Grudge Wallet System</CardTitle>

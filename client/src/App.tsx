@@ -5,12 +5,16 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import { WalletExample } from "@/components/WalletExample";
+import BattleBoard from "@/pages/BattleBoard";
+import BattleArena from "@/pages/BattleArena";
 
 function Router() {
   return (
     <Switch>
       {/* Add pages below */}
       <Route path="/" component={WalletExample} />
+      <Route path="/battle-board" component={BattleBoard} />
+      <Route path="/battle-arena" component={BattleArena} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
