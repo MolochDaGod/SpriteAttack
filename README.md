@@ -79,6 +79,50 @@ NODE_ENV=development
 
 For production, set these in your Vercel project settings.
 
+## 🔐 Authentication
+
+This game integrates with **grudgewarlords.com** as the main authentication server.
+
+### How It Works:
+
+1. **Login**: User clicks login → Redirects to `grudgewarlords.com/login`
+2. **Auth**: User authenticates on grudgewarlords.com
+3. **Callback**: User returns to Sprite Attack with auth token
+4. **Session**: Token stored in localStorage and used for API calls
+
+### Usage:
+
+```typescript
+import { auth } from '@/lib/auth';
+
+// Login
+await auth.login(); // Redirects to grudgewarlords.com
+
+// Check session
+const user = await auth.verifySession();
+if (user) {
+  console.log('Logged in as:', user.username);
+}
+
+// Logout
+await auth.logout();
+```
+
+### Architecture:
+
+```
+grudgewarlords.com          (Main Auth Server)
+    ├── User Login/Register
+    ├── OAuth Provider
+    └── Session Management
+          |
+          v
+sprite-attack.vercel.app   (This Game)
+    ├── Frontend (React)
+    ├── API Routes (/api/*)
+    └── Auth Integration
+```
+
 ## 🛠️ Tech Stack
 
 - **Frontend**: React 18, TypeScript, Vite

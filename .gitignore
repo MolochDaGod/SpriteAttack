@@ -16,3 +16,4 @@ attached_assets/
 
 # Large 3D assets (use CDN or external hosting)
 client/public/3dassets/
+.vercel
